@@ -48,7 +48,7 @@
             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-white text-sm"
              @change="onSearchTypeChange"
           >
-            <option value="mixed">混合正则 (e.g., '^一.+一.$')</option>
+            <option value="mixed">混合 MIXED</option>
             <option value="regex">正则 (e.g., '^一.+一.$')</option>
             <option value="word">词语 (e.g., '一心一意')</option>
             <option value="explanation">释义 (e.g., '只有一个心思')</option>
@@ -84,22 +84,20 @@
     </form>
 
     <!-- Regex Helper Integration -->
-    <transition name="fade-slide">
-        <RegexHelper
-            v-if="localSearchParams.search_type === 'regex'"
-            @apply-pattern="applyRegexPattern"
-            class="mt-5 border-t pt-4"
-        />
-    </transition>
+<!--    <transition name="fade-slide">-->
+<!--        <RegexHelper-->
+<!--            v-if="localSearchParams.search_type === 'regex'"-->
+<!--            @apply-pattern="applyRegexPattern"-->
+<!--            class="mt-5 border-t pt-4"-->
+<!--        />-->
+<!--    </transition>-->
   </div>
 </template>
 
 <script>
-import RegexHelper from "./RegexHelper.vue"; // Make sure path is correct
 
 export default {
   name: 'SearchForm',
-  components: { RegexHelper },
   props: {
     initialSearchParams: {
       type: Object,
@@ -119,7 +117,7 @@ export default {
    computed: {
      inputPlaceholder() {
        switch (this.localSearchParams.search_type) {
-         case 'mixed': return '输入混合正则表达式，# 表示单个字，@ 表示单个字符拼音'
+         case 'mixed': return '输入混合表达式，见教程。'
          case 'regex': return '输入正则表达式, 如: ^一.+一.$';
          case 'word': return '输入成语, 如: 一心一意';
          case 'explanation': return '输入释义关键词, 如: 只有一个心思';

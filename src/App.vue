@@ -49,7 +49,7 @@
     <div v-if="globalLoading" class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-60">
          <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-600"></div>
      </div>
-
+  <AppFooter />
   </div>
 </template>
 
@@ -60,6 +60,7 @@ import SearchForm from './components/SearchForm.vue';
 import ErrorMessage from './components/ErrorMessage.vue';
 import ResultsDisplay from './components/ResultsDisplay.vue';
 import IdiomDetailModal from './components/IdiomDetailModal.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
   components: {
@@ -68,12 +69,13 @@ export default {
     ErrorMessage,
     ResultsDisplay,
     IdiomDetailModal,
+    AppFooter
   },
   data() {
     return {
       searchParams: {
         query: "",
-        search_type: "pinyin",
+        search_type: "mixed",
         exact_match: false,
         limit: 20,
         offset: 0

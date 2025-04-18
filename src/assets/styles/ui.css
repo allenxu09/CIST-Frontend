@@ -1,0 +1,22 @@
+:root {
+  --color-primary: #3b82f6;
+  --color-secondary: #f97316;
+  --color-bg: #ffffff;
+  --color-text: #374151;
+  --radius: 0.5rem;
+}
+.btn {
+  @apply bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-lg
+         transition duration-150 ease-in-out flex items-center justify-center;
+}
+.btn:disabled {
+  @apply opacity-60 cursor-not-allowed;
+}
+.input {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2
+         focus:ring-primary focus:border-transparent outline-none
+         transition duration-150 ease-in-out text-base;
+}
+.card {
+  @apply bg-white rounded-lg shadow-md p-5 transition hover:shadow-lg;
+}
