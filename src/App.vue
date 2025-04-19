@@ -87,7 +87,7 @@ export default {
       showDetail: false,
       selectedIdiom: {},
       searchAttempted: false,
-      apiBaseUrl: "https://nutrimatic-chn.vercel.app"
+      apiBaseUrl: "https://api.cist.hytallenxu.tech"
     };
   },
   methods: {
