@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gradient-to-r from-blue-700 to-blue-800 text-white shadow-lg sticky top-0 z-40">
+  <nav class="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between max-w-5xl">
       <h1 class="text-2xl font-bold tracking-tight">成语查询</h1>
       <div class="flex items-center space-x-3">
@@ -34,7 +34,7 @@ export default {
   emits: ['request-random-idiom'],
   methods: {
     goToTutorial() {
-      window.open('https://github.com/allenxu09/Nutrimatic-CHN/blob/main/tutorial_cn.md', '_blank');
+      window.open('https://github.com/allenxu09/CIST/blob/main/tutorial_cn.md', '_blank');
     }
   }
 }

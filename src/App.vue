@@ -7,7 +7,7 @@
         :initial-search-params="searchParams"
         :loading="loading && !searchResult"
         @search="handleSearch"
-        class="mb-6"
+        class="mb-6 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
       />
 
       <ErrorMessage :message="error" />
@@ -24,7 +24,10 @@
       />
 
        <!-- Placeholder/Instructions before first search -->
-        <div v-else class="text-center py-16 px-6 bg-white rounded-xl shadow-md">
+        <div v-else class="text-center py-16 px-6 bg-white rounded-xl shadow-md transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+          <div class="inline-block p-6 bg-white rounded-full shadow-md mb-4">
+                    <i class="fas fa-dragon text-4xl text-blue-500"></i>
+                </div>
             <h2 class="text-2xl font-semibold text-gray-700 mb-3">开始查询成语</h2>
             <p class="text-gray-500">输入关键词，选择搜索类型，然后点击搜索按钮。</p>
             <button
@@ -205,7 +208,6 @@ export default {
 </script>
 
 <style>
-/* Global styles - Keep minimal or move to main.css/index.css */
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #f3f4f6; /* Slightly different gray */
@@ -213,12 +215,5 @@ body {
   margin: 0;
 }
 
-#app { /* Assuming your root element has id="app" */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Add smooth scrolling if desired */
-/* html { scroll-behavior: smooth; } */
+html { scroll-behavior: smooth; }
 </style>

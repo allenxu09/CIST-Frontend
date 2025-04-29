@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gradient-to-r from-blue-700 to-blue-800 text-white py-4 mt-auto shadow-lg">
+  <footer class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 mt-auto shadow-lg">
     <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center max-w-5xl">
       <div>
         <p class="text-sm">&copy; {{ currentYear }} 成语查询工具</p>

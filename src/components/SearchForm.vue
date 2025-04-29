@@ -58,7 +58,7 @@
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <!-- Exact Match Checkbox -->
           <div class="pt-2 sm:pt-0 sm:self-end mb-1">
-             <label class="inline-flex items-center cursor-pointer">
+             <label v-if="localSearchParams.search_type!=='mixed'" class="inline-flex items-center cursor-pointer">
                <input type="checkbox" v-model="localSearchParams.exact_match" class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
                <span class="ml-2 text-sm text-gray-700">精确匹配</span>
              </label>
@@ -82,15 +82,6 @@
         </div>
       </div>
     </form>
-
-    <!-- Regex Helper Integration -->
-<!--    <transition name="fade-slide">-->
-<!--        <RegexHelper-->
-<!--            v-if="localSearchParams.search_type === 'regex'"-->
-<!--            @apply-pattern="applyRegexPattern"-->
-<!--            class="mt-5 border-t pt-4"-->
-<!--        />-->
-<!--    </transition>-->
   </div>
 </template>
 
