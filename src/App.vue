@@ -49,7 +49,7 @@
       ref="idiomModal"
     />
 
-    <div v-if="globalLoading" class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-60">
+    <div v-if="globalLoading" class="fixed inset-0 bg-white/75 flex items-center justify-center z-60">
          <div class="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-600"></div>
      </div>
   <AppFooter />

@@ -2,11 +2,11 @@
   <transition name="modal-fade">
     <div
       v-if="show"
-      class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 backdrop-blur-sm"
+      class="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 backdrop-blur-sm"
       @click.self="$emit('close')"
     >
       <div
-        class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto m-4"
+        class="bg-white/90 rounded-xl shadow-2xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto m-4"
         role="dialog"
         aria-modal="true"
         :aria-labelledby="'idiom-title-' + (idiom?.word || 'modal')"
@@ -29,7 +29,7 @@
           </div>
           <div>
             <span class="font-semibold text-gray-600 block mb-1">释义：</span>
-            <p class="text-gray-800 leading-relaxed">{{ idiom?.explanation || '无' }}</p>
+            <p class="text-gray-800 leading-relaxed line-clamp-2">{{ idiom?.explanation || '无' }}</p>
           </div>
           <div v-if="idiom?.derivation">
             <span class="font-semibold text-gray-600 block mb-1">出处：</span>
@@ -43,14 +43,14 @@
 
         <!-- Modal Footer -->
         <div class="mt-6 pt-4 border-t border-gray-200 flex justify-end space-x-3">
-           <button
-              @click="$emit('copy-idiom', idiom?.word)"
-              class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2 rounded-lg transition text-sm flex items-center"
-              :disabled="!idiom?.word"
-            >
-             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-             </svg>
+          <button
+            @click="handleCopy"
+            class="border bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2 rounded-lg transition text-sm flex items-center"
+            :disabled="!idiom?.word"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
             复制成语
           </button>
           <button
@@ -61,12 +61,12 @@
           </button>
         </div>
       </div>
-       <!-- Toast Notification -->
-        <transition name="toast-fade">
-            <div v-if="showCopyNotification" class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-2 rounded-lg shadow-md">
-                成语已复制!
-            </div>
-        </transition>
+      <!-- Toast Notification -->
+      <transition name="toast-fade">
+        <div v-if="showCopyNotification" class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-2 rounded-lg shadow-md">
+          成语已复制!
+        </div>
+      </transition>
     </div>
   </transition>
 </template>
@@ -85,41 +85,34 @@ export default {
     }
   },
   emits: ['close', 'copy-idiom'],
-   data() {
+  data() {
     return {
       showCopyNotification: false,
     };
   },
   methods: {
-      triggerCopyNotification() {
-          this.showCopyNotification = true;
-          setTimeout(() => {
-              this.showCopyNotification = false;
-          }, 2000); // Hide after 2 seconds
-      },
+    handleCopy() {
+      if (this.idiom?.word) {
+        this.$emit('copy-idiom', this.idiom.word);
+        this.showCopyNotification = true;
+        setTimeout(() => {
+          this.showCopyNotification = false;
+        }, 2000);
+      }
+    },
     handleEscKey(event) {
       if (event.key === 'Escape') {
         this.$emit('close');
       }
-    },
-     handleCopy() {
-         if (!this.idiom?.word) return;
-         this.$emit('copy-idiom', this.idiom.word);
-         // Show local notification
-         this.showCopyNotification = true;
-         setTimeout(() => {
-             this.showCopyNotification = false;
-         }, 2000);
-     }
+    }
   },
-   watch: {
+  watch: {
     show(newValue) {
       if (newValue) {
         this.$nextTick(() => {
           window.addEventListener('keydown', this.handleEscKey);
         });
       } else {
-        // Remove listener when modal is closed
         window.removeEventListener('keydown', this.handleEscKey);
       }
     }
@@ -131,25 +124,12 @@ export default {
 </script>
 
 <style scoped>
-.modal-fade-enter-active, .modal-fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.modal-fade-enter-from, .modal-fade-leave-to {
-  opacity: 0;
-}
 
 .modal-fade-enter-active .bg-white, .modal-fade-leave-active .bg-white {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 .modal-fade-enter-from .bg-white, .modal-fade-leave-to .bg-white {
-    transform: scale(0.95) translateY(10px);
+  transform: scale(0.95) translateY(10px);
 }
 
-.toast-fade-enter-active, .toast-fade-leave-active {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.toast-fade-enter-from, .toast-fade-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
-}
 </style>
